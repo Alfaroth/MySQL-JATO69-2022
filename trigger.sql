@@ -1,3 +1,6 @@
+/* set global log_bin_trust_function_creators = 1;
+da eseguire come utente root per i privilegi */
+
 create table if not exists studente_audit like studente;
 /* creo una tabella vuota studente_audit con la stessa struttura di studente */
 
@@ -121,7 +124,7 @@ DELIMITER ;
 /* dopo ogni cancellazione in ordine_dettaglio aggiorna rimanenze e crediti */
 
 DELIMITER $$
-create trigger before_od_delete
+create trigger before_od_update
 before update on ordine_dettaglio
 for each row
 begin
